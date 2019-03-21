@@ -1,32 +1,33 @@
-import { Action, ActionCreatorsMapObject, Dispatch, ActionCreator } from "redux";
+import {
+  Action,
+  ActionCreatorsMapObject,
+  Dispatch,
+  ActionCreator
+} from "redux";
 import { ICustomer } from "../../../../entities";
 import { Types } from "./types";
 import { ICustomerAction } from "../../common/actionDefinition";
 
-
-
 export const AddCustomerActions: ActionCreatorsMapObject = {
-    AddCustomer
-}
+  AddCustomer
+};
 
 export function AddCustomerAction(customer: ICustomer): ICustomerAction {
-    return {
-        type: Types.ADD_CUSTOMER,
-        customer
-    }
+  return {
+    type: Types.ADD_CUSTOMER,
+    customer
+  };
 }
 export function AddCustomerSuccessAction(): ICustomerAction {
-    return {
-        type: Types.ADD_CUSTOMERS_SUCCESS
-    }
+  return {
+    type: Types.ADD_CUSTOMERS_SUCCESS
+  };
 }
 
 export function AddCustomer(customer: ICustomer): any {
-    return function (dispatch: Dispatch<any>) {
-       
-        dispatch(AddCustomerAction(customer));
-        
-        dispatch(AddCustomerSuccessAction());
-    }
-}
+  return function(dispatch: Dispatch<any>) {
+    dispatch(AddCustomerAction(customer));
 
+    dispatch(AddCustomerSuccessAction());
+  };
+}

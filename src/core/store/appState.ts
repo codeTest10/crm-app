@@ -1,12 +1,11 @@
 import { ICustomer } from "../../entities";
 
-
-export interface IAppState {   
-    customers: ICustomer[],
-    filterText:string
+export interface IAppState {
+  customers: ICustomer[];
+  filterText: string;
 }
 
-export const AppState: IAppState = {  
-    customers: [],
-    filterText:''
-}
+export const AppState: IAppState = {
+  customers: [],
+  filterText: ""
+};
