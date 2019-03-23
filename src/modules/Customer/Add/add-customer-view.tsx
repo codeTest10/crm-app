@@ -6,6 +6,7 @@ import { CustomerForm } from "../shared-components/customer-form";
 import { ICustomer } from "../../../entities";
 import { AddCustomerActions } from "./actions";
 import { customersReducer } from "../reducers/customers-reducer";
+import { Header } from "../../../core/components";
 
 interface IAddCustomerState {
   customers: ICustomer[];
@@ -28,6 +29,7 @@ export class AddCustomer extends React.Component<
   }
 
   handleSave(customer: ICustomer) {
+    //convert the string date to date format before dispatch
     let customerDOB = new Date(customer.dob);
     customer.dob = customerDOB;
 
@@ -46,9 +48,7 @@ export class AddCustomer extends React.Component<
     return (
       <div>
         <Grid container spacing={24}>
-          <Grid item xs={12}>
-            <h1>Add customer</h1>
-          </Grid>
+        <Header>Add Customer</Header>
           <Grid item xs={12}>
             <CustomerForm
               mode="Add"

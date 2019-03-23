@@ -1,11 +1,17 @@
 import { ICustomer } from "../../entities";
 
+export interface IManageCustomerUI {
+  filterText: string;
+}
+
 export interface IAppState {
   customers: ICustomer[];
-  filterText: string;
+  manageCustomerUI: IManageCustomerUI;
 }
 
 export const AppState: IAppState = {
   customers: [],
-  filterText: ""
+  manageCustomerUI: {
+    filterText: ""
+  }
 };

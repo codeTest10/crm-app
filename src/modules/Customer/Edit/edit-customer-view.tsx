@@ -6,6 +6,7 @@ import { CustomerForm } from "../shared-components/customer-form";
 import { ICustomer } from "../../../entities";
 import { UpdateCustomerActions } from "./actions";
 import { getCustomerById } from "./selectors/get-customer-by-id-selector";
+import { Header } from "../../../core/components";
 
 interface IEditCustomerState {
   customers: ICustomer[];
@@ -48,9 +49,7 @@ export class EditCustomer extends React.Component<
     return (
       <div>
         <Grid container spacing={24}>
-          <Grid item xs={12}>
-            <h1>Edit customer</h1>
-          </Grid>
+        <Header>Edit Customer</Header>
           <Grid item xs={12}>
             <CustomerForm
               mode="Edit"

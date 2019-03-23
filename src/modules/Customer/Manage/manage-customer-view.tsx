@@ -6,8 +6,9 @@ import { CustomerList } from "./manage-customer-list";
 import { ICustomer } from "../../../entities";
 import { ManageCustomerActions } from "./actions";
 import { Button, Grid, Paper, TextField } from "@material-ui/core";
-import { IAppState } from "../../../core/store/appState";
+import { IAppState, IManageCustomerUI } from "../../../core/store/appState";
 import { filterCustomer } from "./selectors/customer-filter-selector";
+import { Header } from "../../../core/components";
 
 interface IManageCustomerState {
   customers: ICustomer[];
@@ -17,7 +18,7 @@ interface IManageCustomerProps {
   actions: any;
   customers: ICustomer[];
   history: any;
-  customerFilter: string;
+  ui: IManageCustomerUI;
 }
 
 export class ManageCustomer extends React.Component<
@@ -30,6 +31,11 @@ export class ManageCustomer extends React.Component<
     this.redirectToAddCustomerView = this.redirectToAddCustomerView.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentWillMount(){
+    //Clear the filter when the page reloads   
+    this.props.actions.filterCustomerByName('');
   }
 
   redirectToAddCustomerView() {
@@ -51,10 +57,7 @@ export class ManageCustomer extends React.Component<
     return (
       <div>
         <Grid container spacing={24}>
-          <Grid item xs={12}>
-            <h1>Manage Customers</h1>
-          </Grid>
-
+          <Header>Manage Customers</Header>
           <Grid item xs={9}>
             <Button
               variant="contained"
@@ -68,7 +71,7 @@ export class ManageCustomer extends React.Component<
             <TextField
               label="Search by name"
               margin="normal"
-              value={this.props.customerFilter}
+              value={this.props.ui.filterText}
               onChange={this.handleChange}
             />
           </Grid>
@@ -88,10 +91,13 @@ export class ManageCustomer extends React.Component<
   }
 }
 
-function mapStateToProps(state: any) {
+function mapStateToProps(state: IAppState) {
   return {
-    customers: filterCustomer(state.customers, state.customerFilter),
-    customerFilter: state.customerFilter
+    customers: filterCustomer(
+      state.customers,
+      state.manageCustomerUI.filterText
+    ),
+    ui: state.manageCustomerUI
   };
 }
 

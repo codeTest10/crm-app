@@ -1,8 +1,8 @@
-import { combineReducers, Action } from "redux";
+import { combineReducers } from "redux";
 import { customersReducer } from "../../modules/Customer/reducers/customers-reducer";
-import { customersSearchReducer } from "../../modules/Customer/reducers/customer-search-reducer";
+import { manageCustomerUIReducer } from "../../modules/Customer/Manage/reducers/manage-customer-ui-reducer";
 
 export const rootReducer = combineReducers({
   customers: customersReducer,
-  customerFilter: customersSearchReducer
+  manageCustomerUI: manageCustomerUIReducer
 });
